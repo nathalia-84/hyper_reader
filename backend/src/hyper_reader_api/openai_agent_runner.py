@@ -2,7 +2,7 @@ import json
 
 from agents import Agent, RunContextWrapper, Runner
 
-from hyper_reader_api.agent_runner import TranslationRequest, TranslationResult
+from hyper_reader_api.schemas import TranslationRequest, TranslationResult
 
 
 def _translator_instructions(

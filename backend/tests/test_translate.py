@@ -1,8 +1,8 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from hyper_reader_api.agent_runner import TranslationRequest, TranslationResult
 from hyper_reader_api.app import create_app
+from hyper_reader_api.schemas import TranslationRequest, TranslationResult
 from hyper_reader_api.settings import Settings
 
 API_KEY = "test-api-key"
@@ -111,3 +111,10 @@ def test_rejects_request_without_context_sentence(
 
     assert response.status_code == 422
     assert runner.translate_requests == []
+
+
+@pytest.mark.parametrize("path", ["/docs", "/redoc", "/openapi.json"])
+def test_does_not_serve_api_docs_without_api_key(client: TestClient, path: str) -> None:
+    response = client.get(path)
+
+    assert response.status_code in (401, 404)

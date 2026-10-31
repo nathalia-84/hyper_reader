@@ -1,13 +1,18 @@
+from pathlib import Path
+
 from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+# backend/.env, found regardless of the directory the server is started from.
+_ENV_FILE = Path(__file__).resolve().parents[2] / ".env"
+
 
 class Settings(BaseSettings):
-    """Server configuration, read from environment variables (or a local
-    `.env` file)."""
+    """Server configuration, read from environment variables (or `backend/.env`;
+    real environment variables win)."""
 
     model_config = SettingsConfigDict(
-        env_prefix="HYPER_READER_", env_file=".env", extra="ignore"
+        env_prefix="HYPER_READER_", env_file=_ENV_FILE, extra="ignore"
     )
 
     api_key: str = Field(min_length=1)
