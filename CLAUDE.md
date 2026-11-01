@@ -10,6 +10,10 @@
 
 - Never add AI attribution to commits or PRs: no `Co-Authored-By: Claude ...` trailer in commit messages, and no "Generated with Claude Code" line (or similar) in PR descriptions.
 
+## Backend endpoints
+
+- Every new backend endpoint, and every change to an endpoint's request or response, ships with Bruno requests in `backend/bruno/` (one folder per endpoint): the success case plus each error status the endpoint returns, each with `assert` checks. Put "(real AI)" in the name of requests that reach OpenAI. Done means `npx @usebruno/cli run --env Local` passes against a locally running server.
+
 ## Agent skills
 
 ### Issue tracker
