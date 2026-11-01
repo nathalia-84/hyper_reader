@@ -28,6 +28,20 @@ curl -X POST http://localhost:8000/translate \
   -d '{"bookLanguage": "en", "targetLanguage": "pt-BR", "word": "bank", "sentence": "They sat on the bank of the river."}'
 ```
 
+## Bruno collection
+
+`bruno/` is a [Bruno](https://www.usebruno.com/) collection with requests for every endpoint, including the auth and validation error cases.
+
+1. Copy `bruno/.env.example` to `bruno/.env` (gitignored) and set `HYPER_READER_API_KEY` to the same value as in `backend/.env`.
+2. In Bruno, open the `bruno/` folder as a collection and select the **Local** environment.
+3. Start the server (`uv run hyper-reader-api`) and send requests.
+
+Requests marked "real AI" call OpenAI and spend credits. To run the whole collection from the terminal:
+
+```sh
+cd bruno && npx @usebruno/cli run --env Local
+```
+
 ## Checks
 
 ```sh
