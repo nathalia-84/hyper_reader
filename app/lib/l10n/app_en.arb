@@ -1,0 +1,15 @@
+{
+  "@@locale": "en",
+  "appTitle": "Hyper Reader",
+  "@appTitle": {
+    "description": "Application name shown by the operating system."
+  },
+  "libraryTitle": "Library",
+  "@libraryTitle": {
+    "description": "Title of the Library screen, which lists imported books."
+  },
+  "libraryEmpty": "No books yet",
+  "@libraryEmpty": {
+    "description": "Shown on the Library screen when no book has been imported."
+  }
+}
