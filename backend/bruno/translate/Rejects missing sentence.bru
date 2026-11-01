@@ -1,0 +1,27 @@
+meta {
+  name: Rejects missing sentence
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/translate
+  body: json
+  auth: none
+}
+
+headers {
+  X-API-Key: {{apiKey}}
+}
+
+body:json {
+  {
+    "bookLanguage": "en",
+    "targetLanguage": "pt-BR",
+    "word": "bank"
+  }
+}
+
+assert {
+  res.status: eq 422
+}

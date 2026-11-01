@@ -1,0 +1,28 @@
+meta {
+  name: Rejects wrong API key
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/translate
+  body: json
+  auth: none
+}
+
+headers {
+  X-API-Key: wrong-key
+}
+
+body:json {
+  {
+    "bookLanguage": "en",
+    "targetLanguage": "pt-BR",
+    "word": "bank",
+    "sentence": "They sat on the bank of the river."
+  }
+}
+
+assert {
+  res.status: eq 401
+}

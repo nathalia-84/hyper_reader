@@ -1,0 +1,29 @@
+meta {
+  name: Inflected verb returns lemma (real AI)
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/translate
+  body: json
+  auth: none
+}
+
+headers {
+  X-API-Key: {{apiKey}}
+}
+
+body:json {
+  {
+    "bookLanguage": "en",
+    "targetLanguage": "pt-BR",
+    "word": "went",
+    "sentence": "He went home early because he felt sick."
+  }
+}
+
+assert {
+  res.status: eq 200
+  res.body.lemma: eq go
+}

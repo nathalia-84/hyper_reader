@@ -1,0 +1,24 @@
+meta {
+  name: Rejects missing API key
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/translate
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "bookLanguage": "en",
+    "targetLanguage": "pt-BR",
+    "word": "bank",
+    "sentence": "They sat on the bank of the river."
+  }
+}
+
+assert {
+  res.status: eq 401
+}

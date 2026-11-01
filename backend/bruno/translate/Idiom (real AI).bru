@@ -1,0 +1,29 @@
+meta {
+  name: Idiom (real AI)
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/translate
+  body: json
+  auth: none
+}
+
+headers {
+  X-API-Key: {{apiKey}}
+}
+
+body:json {
+  {
+    "bookLanguage": "en",
+    "targetLanguage": "pt-BR",
+    "word": "kick the bucket",
+    "sentence": "The old man finally kicked the bucket last winter."
+  }
+}
+
+assert {
+  res.status: eq 200
+  res.body.translation: isString
+}

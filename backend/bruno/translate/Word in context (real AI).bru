@@ -1,0 +1,36 @@
+meta {
+  name: Word in context (real AI)
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/translate
+  body: json
+  auth: none
+}
+
+headers {
+  X-API-Key: {{apiKey}}
+}
+
+body:json {
+  {
+    "bookLanguage": "en",
+    "targetLanguage": "pt-BR",
+    "word": "bank",
+    "sentence": "They sat on the bank of the river and watched the boats."
+  }
+}
+
+assert {
+  res.status: eq 200
+  res.body.translation: isString
+  res.body.lemma: isString
+  res.body.note: isString
+}
+
+docs {
+  "bank" next to a river should translate as the river bank, not the
+  financial institution.
+}
